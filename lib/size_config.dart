@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Sizeconfig {
+ 
   static MediaQueryData? _mediaQueryData;
   static double? screenWidth;
   static double? screenHeight;
@@ -16,7 +17,12 @@ class Sizeconfig {
 }
 
 double getProportionateScreenHeight(double inputHeight) {
-
   double? screenHeight = Sizeconfig.screenHeight;
   return (inputHeight / 812.0) * screenHeight!;
+}
+
+double getProportionateScreenWidth(double inputWidth) {
+  double? screenWidht = Sizeconfig.screenWidth;
+
+  return (inputWidth / 375.0) * screenWidht!;
 }
