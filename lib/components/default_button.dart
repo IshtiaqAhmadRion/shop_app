@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
         color: kPrimaryColor,
-        onPressed: press(),
+        onPressed: ()=>press,
         child: Text(
           text,
           style: TextStyle(
