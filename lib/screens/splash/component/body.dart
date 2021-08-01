@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/screens/sign_in/sign_in_screen.dart';
 import 'package:shop_app/size_config.dart';
 
 import '../component/splash_content.dart';
 import '../../../components/default_button.dart';
-
 
 class Body extends StatefulWidget {
   Body({Key? key}) : super(key: key);
@@ -67,13 +67,13 @@ class _BodyState extends State<Body> {
                         (index) => buildDot(index: index),
                       ),
                     ),
-                    Spacer(flex: 3 ),
+                    Spacer(flex: 3),
                     Center(
                       child: CustomButton(
                         text: "Continue",
-                        press: (){},
-                       
-                      
+                        press: () {
+                          Navigator.pushNamed(context, SignInScreen.routeName);
+                        },
                       ),
                     ),
                     Spacer(),
