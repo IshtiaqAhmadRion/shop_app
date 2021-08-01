@@ -69,8 +69,11 @@ class _BodyState extends State<Body> {
                     ),
                     Spacer(flex: 3 ),
                     Center(
-                      child:                           
-                      0
+                      child: CustomButton(
+                        text: "Continue",
+                        press: (){},
+                      ),
+
                      
                     ),
                     Spacer(),
