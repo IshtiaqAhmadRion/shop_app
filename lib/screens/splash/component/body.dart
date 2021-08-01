@@ -71,8 +71,8 @@ class _BodyState extends State<Body> {
                     Center(
                       child: CustomButton(
                         text: "Continue",
-                        press: () {
-                          print("clicked");
+                        voidCallback: () {
+                
                           Navigator.pushNamed(context, SignInScreen.routeName);
                         },
                       ),
