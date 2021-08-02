@@ -8,22 +8,51 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: SizedBox(
-          width: double.infinity,
-          child: Column(
-              children: [
-          Text(
-            "Welcome Back",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: getProportionateScreenWidth(28),
-              fontWeight: FontWeight.bold,
+      width: double.infinity,
+      child: Padding(
+        padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        child: Column(
+          children: [
+            Text(
+              "Welcome Back",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: getProportionateScreenWidth(28),
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          Text(
-            "Sign in with your email and password \nor continue with social meida",
-            textAlign: TextAlign.center,)
-              ],
+            Text(
+              "Sign in with your email and password \nor continue with social meida",
+              textAlign: TextAlign.center,
             ),
-        ));
+            SignForm(),
+          ],
+        ),
+      ),
+    ));
+  }
+}
+
+class SignForm extends StatefulWidget {
+  SignForm({Key? key}) : super(key: key);
+
+  @override
+  _SignFormState createState() => _SignFormState();
+}
+
+class _SignFormState extends State<SignForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: InputDecoration(
+              hintText: "Enter Your Email"
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
