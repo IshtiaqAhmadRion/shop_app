@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop_app/components/custom_surffix_icon.dart';
+import 'package:shop_app/components/default_button.dart';
+//import 'package:shop_app/constants.dart';
 import 'package:shop_app/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -43,32 +46,96 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  final _formKey = GlobalKey<FormState>();
+  final List<String> errors = [];
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         children: [
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Email",
-              hintText: "Enter Your Email",
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(color: kTextColor),
-                gapPadding: 10,
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(color: kTextColor),
-                gapPadding: 10,
-              ),
-            ),
-          )
+          buildEmailFormField(),
+          SizedBox(
+            height: getProportionateScreenHeight(20),
+          ),
+          buildPasswordFormField(),
+          SizedBox(
+            height: getProportionateScreenHeight(20),
+           
+          ),
+          // FormError(
+          //   errors: errors),
+          CustomButton(text: 'Continue', voidCallback: () {})
         ],
       ),
+    );
+  }
+
+  TextFormField buildPasswordFormField() {
+    return TextFormField(
+      obscureText: true,
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        labelText: "Password",
+        hintText: "Enter your password",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(
+          svgIcon: 'assets/icons/Lock.svg',
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildEmailFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          setState(() {
+            errors.add('Please enter your valid email');
+          });
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Email",
+        hintText: "Enter your email",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(
+          svgIcon: 'assets/icons/Mail.svg',
+        ),
+      ),
+    );
+  }
+}
+
+class FormError extends StatelessWidget {
+  const FormError({
+    Key? key,
+    required this.errors,
+  }) : super(key: key);
+
+  final List<String> errors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            SvgPicture.asset(
+              'assets/icons/Error.svg',
+              height: getProportionateScreenWidth(2),
+              width: getProportionateScreenWidth(2),
+            ),
+            SizedBox(
+              width: getProportionateScreenWidth(2),
+            ),
+            Text(errors[0]),
+          ],
+        ),
+      ],
     );
   }
 }

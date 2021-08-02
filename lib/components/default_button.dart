@@ -4,13 +4,11 @@ import '../constants.dart';
 import '../size_config.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
-    Key? key,
-    required this.text,
-    required this.voidCallback
-  }) : super(key: key);
+  const CustomButton({Key? key, required this.text, required this.voidCallback})
+      : super(key: key);
   final String text;
   final VoidCallback voidCallback;
+ 
   //final Function press;
 
   @override
