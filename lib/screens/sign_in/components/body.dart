@@ -1,8 +1,10 @@
 //import 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:shop_app/components/no_account_text.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop_app/components/socal_card.dart';
-import 'package:shop_app/constants.dart';
+// import 'package:shop_app/constants.dart';
+// import 'package:shop_app/screens/forgot_password/forgot_password_screen.dart';
 
 // import 'package:shop_app/components/custom_surffix_icon.dart';
 // import 'package:shop_app/components/default_button.dart';
@@ -61,21 +63,7 @@ class Body extends StatelessWidget {
                 ],
               ),
               SizedBox(height: getProportionateScreenHeight(20),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account? ",
-                    style: TextStyle(fontSize: getProportionateScreenWidth(16)),
-                  ),
-                  Text(
-                    "Sign Up ",
-                    style: TextStyle(
-                        fontSize: getProportionateScreenWidth(16),
-                        color: kPrimaryColor),
-                  ),
-                ],
-              ),
+              NoAccountText(),
             ],
           ),
         ),
@@ -83,3 +71,4 @@ class Body extends StatelessWidget {
     ));
   }
 }
+
