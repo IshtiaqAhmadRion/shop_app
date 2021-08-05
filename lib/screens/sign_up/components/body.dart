@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/custom_surffix_icon.dart';
 import 'package:shop_app/constants.dart';
+import 'package:shop_app/size_config.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -9,18 +10,22 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        children: [
-          Text(
-            "Register Account",
-            style: headingStyle,
-          ),
-          Text(
-            "Complete your details or continue \nwith socila media",
-            textAlign: TextAlign.center,
-          ),
-          SignUpForm(),
-        ],
+      child: Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        child: Column(
+          children: [
+            Text(
+              "Register Account",
+              style: headingStyle,
+            ),
+            Text(
+              "Complete your details or continue \nwith socila media",
+              textAlign: TextAlign.center,
+            ),
+            SignUpForm(),
+          ],
+        ),
       ),
     );
   }
@@ -40,7 +45,6 @@ class _SignUpFormState extends State<SignUpForm> {
   String confirm_password = "";
   final List<String> errors = [];
 
-  
   void addError({required String error}) {
     if (!errors.contains(error)) {
       setState(() {
@@ -62,7 +66,77 @@ class _SignUpFormState extends State<SignUpForm> {
     return Form(
       child: Column(
         children: [
+          buildEmailFormField(),
+          SizedBox(
+            height: getProportionateScreenHeight(30),
+          ),
+          buildPasswordFormField(),
+          SizedBox(
+            height: getProportionateScreenHeight(30),
+          ),
           TextFormField(
+            obscureText: true,
+            onSaved: (newValue) => confirm_password = newValue!,
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                removeError(error: kPessNullError);
+              } else if (value.length >= 8) {
+                removeError(error: kShortPassError);
+              }
+              return null;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                addError(error: kPessNullError);
+                return "";
+              } else if (value.length < 8) {
+                removeError(error: kShortPassError);
+                return "";
+              }
+              return null;
+            },
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: "Confirm Password",
+              hintText: "Re-enter your password",
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixIcon: CustomSurffixIcon(
+                svgIcon: 'assets/icons/Lock.svg',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  TextFormField buildPasswordFormField() {
+    return TextFormField(
+      obscureText: true,
+      onSaved: (newValue) => password = newValue!,
+      onChanged: (value) {
+        if (value.isNotEmpty ) {
+          removeError(error: kPessNullError);
+        } else if (value.length >= 8 ) {
+          removeError(error: kShortPassError);
+        return null;
+        }
+        return null;
+      },
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+        labelText: "Password",
+        hintText: "Enter your password",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(
+          svgIcon: 'assets/icons/Lock.svg',
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildEmailFormField() {
+    return TextFormField(
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
@@ -101,9 +175,6 @@ class _SignUpFormState extends State<SignUpForm> {
           svgIcon: 'assets/icons/Mail.svg',
         ),
       ),
-    ),
-
-        ],
-      ),);
+    );
   }
 }
