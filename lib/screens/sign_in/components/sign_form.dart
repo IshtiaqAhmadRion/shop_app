@@ -18,7 +18,7 @@ class SignForm extends StatefulWidget {
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
   String email = '';
-  String pasword = '';
+  String password = '';
   bool remember = false;
   final List<String> errors = [];
 
@@ -99,16 +99,12 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => pasword = newValue!,
+      onSaved: (newValue) => password = newValue!,
       onChanged: (value) {
-        if (value.isNotEmpty && errors.contains(kPessNullError)) {
-          setState(() {
-            errors.remove(kPessNullError);
-          });
-        } else if (value.length >= 8 && errors.contains(kShortPassError)) {
-          setState(() {
-            errors.remove(kShortPassError);
-          });
+        if (value.isNotEmpty) {
+          removeError(error: kPessNullError);
+        } else if (value.length >= 8) {
+          removeError(error: kShortPassError);
         }
         return null;
       },
