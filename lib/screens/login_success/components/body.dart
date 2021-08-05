@@ -14,6 +14,7 @@ class Body extends StatelessWidget {
         ),
         Image.asset(
           "assets/images/success.png",
+          width: Sizeconfig.screenWidth,
           height: Sizeconfig.screenHeight! * 0.4, //40%
         ),
         SizedBox(
@@ -27,7 +28,7 @@ class Body extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        Spacer(),
+       Spacer(),
         SizedBox(
           width: Sizeconfig.screenWidth! * 0.6,
           child: CustomButton(text: "Back to home", voidCallback: () {}),
