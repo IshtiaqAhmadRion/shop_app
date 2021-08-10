@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/components/default_button.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -31,7 +32,8 @@ class Body extends StatelessWidget {
        Spacer(),
         SizedBox(
           width: Sizeconfig.screenWidth! * 0.6,
-          child: CustomButton(text: "Back to home", voidCallback: () {}),
+          child: CustomButton(text: "Back to home", 
+          voidCallback: () => Navigator.pushNamed(context, HomeScreen.routeName)),
         ),
         Spacer(),
       ],
