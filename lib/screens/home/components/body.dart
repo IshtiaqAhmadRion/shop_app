@@ -56,6 +56,14 @@ class Body extends StatelessWidget {
                     ),
                     child: SvgPicture.asset("assets/icons/Bell.svg"),
                   ),
+                  Container(
+                    height: getProportionateScreenWidth(16),
+                    width: getProportionateScreenWidth(16),
+                    decoration: BoxDecoration(
+                      color: Color(0XFFFF4848),
+                    ),
+                  ),
+
                 ],
               )
             ],
