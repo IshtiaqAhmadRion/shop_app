@@ -44,15 +44,19 @@ class Body extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(getProportionateScreenWidth(12)),
-                height: getProportionateScreenWidth(46),
-                width: getProportionateScreenWidth(46),
-                decoration: BoxDecoration(
-                  color: kSecondaryColor.withOpacity(0.1),
-                  shape: BoxShape.circle,
-                ),
-                child: SvgPicture.asset("assets/icons/Bell.svg"),
+              Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(getProportionateScreenWidth(12)),
+                    height: getProportionateScreenWidth(46),
+                    width: getProportionateScreenWidth(46),
+                    decoration: BoxDecoration(
+                      color: kSecondaryColor.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset("assets/icons/Bell.svg"),
+                  ),
+                ],
               )
             ],
           ),
