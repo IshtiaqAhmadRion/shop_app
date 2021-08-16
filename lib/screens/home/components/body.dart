@@ -1,9 +1,11 @@
 // import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:shop_app/size_config.dart';
 
+import 'discount_banner.dart';
 import 'home_header.dart';
 
 class Body extends StatelessWidget {
@@ -19,45 +21,89 @@ class Body extends StatelessWidget {
             height: getProportionateScreenWidth(20),
           ),
           HomeHeader(),
+          SizedBox(
+            height: getProportionateScreenWidth(30),
+          ),
           DiscountBanner(),
+          SizedBox(
+            height: getProportionateScreenWidth(30),
+          ),
+          Categories(),
         ],
       ),
     ));
   }
 }
 
-class DiscountBanner extends StatelessWidget {
-  const DiscountBanner({
-    Key? key,
-  }) : super(key: key);
+class Categories extends StatelessWidget {
+  const Categories({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: getProportionateScreenWidth(20),
-      ),
-      padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(20),
-          vertical: getProportionateScreenWidth(15)),
-      width: double.infinity,
-      //height: 90,
-      decoration: BoxDecoration(
-        color: Color(0xFF4A3298),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text.rich(TextSpan(
-          text: "A Summer Surprise\n",
-          style: TextStyle(color: Colors.white),
+    List<Map<String, dynamic>> categories = [
+      {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
+      {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
+      {"icon": "assets/icons/Game Icon.svg", "text": "Game"},
+      {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
+      {"icon": "assets/icons/Discover.svg", "text": "More"},
+    ];
+
+    return Row(
+      children: [
+        ...List.generate(
+            categories.length,
+            (index) => CategoryCard(
+                  icon: categories[index]["icon"],
+                  text: categories[index]["text"],
+                  press: () {},
+                ))
+      ],
+    );
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({
+    Key? key,
+    //required this.categories,
+    required this.icon,
+    required this.text,
+    required this.press,
+  }) : super(key: key);
+
+  //final List<Map<String, dynamic>> categories;
+  final String icon, text;
+  final GestureTapCallback press;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: press,
+      child: SizedBox(
+        width: getProportionateScreenWidth(55),
+        child: Column(
           children: [
-            TextSpan(
-                text: "Cashback 20%",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold
+            AspectRatio(
+              aspectRatio: 1,
+              child: Container(
+                padding: EdgeInsets.all(getProportionateScreenWidth(15)),
+                decoration: BoxDecoration(
+                  color: Color(0xFFFFECDF),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                ),
-          ])),
+                child: SvgPicture.asset(icon),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
