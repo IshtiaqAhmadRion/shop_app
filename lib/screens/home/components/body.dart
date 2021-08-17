@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/home/components/section_title.dart';
 
 import 'package:shop_app/size_config.dart';
 
@@ -33,6 +33,10 @@ class Body extends StatelessWidget {
             height: getProportionateScreenWidth(30),
           ),
           SpecialOffers(),
+          SizedBox(
+            height: getProportionateScreenWidth(30),
+          ),
+          SectionTitle(text: "Populer Product", press: () {}),
         ],
       ),
     ));
