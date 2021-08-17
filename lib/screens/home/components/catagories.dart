@@ -18,10 +18,10 @@ class Categories extends StatelessWidget {
     ];
 
     return Padding(
-      padding:  EdgeInsets.symmetric(vertical: getProportionateScreenWidth(20)),
+      padding:  EdgeInsets.all(getProportionateScreenWidth(20)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ...List.generate(
               categories.length,
