@@ -31,13 +31,24 @@ class Body extends StatelessWidget {
             height: getProportionateScreenWidth(30),
           ),
           Categories(),
-           SizedBox(
+          SizedBox(
             height: getProportionateScreenWidth(30),
           ),
           SectionTitle(
             text: "Special for you",
             press: () {},
           ),
+          SizedBox(
+            width: getProportionateScreenWidth(242),
+            height: getProportionateScreenWidth(100),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                "assets/images/Image Banner 2.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
         ],
       ),
     ));
