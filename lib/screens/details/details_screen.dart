@@ -29,15 +29,17 @@ class DetailsScreen extends StatelessWidget {
 }
 
 class CustomAppBar extends PreferredSize {
-  
+  CustomAppBar() : super();
 
   @override
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
-  
+
   @override
   Widget build(BuildContext context) {
     return Row(
-
+      children: [
+        
+      ],
     );
   }
 }
