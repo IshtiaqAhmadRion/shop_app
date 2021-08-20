@@ -7,9 +7,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
-      appBar: PreferredSize(
-        height:
-      ),
+      
     );
   }
 }
