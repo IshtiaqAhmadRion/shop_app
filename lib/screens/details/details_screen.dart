@@ -7,22 +7,24 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
-      appBar: CustomAppBar(),
+      appBar: PreferredSize(
+        height:
+      ),
     );
   }
 }
-class CustomAppBar extends PreferredSize {
+// class CustomAppBar extends PreferredSize {
 
   
-  @override
-  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [],
-    );
-  }
-}
+//   @override
+//   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [],
+//     );
+//   }
+// }
 class ProductDetailsArguments {
   final Product product;
   ProductDetailsArguments({required this.product});
