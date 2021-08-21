@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/product.dart';
+import 'package:shop_app/size_config.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -7,6 +8,16 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column();
+    return Column(
+      children: [
+        SizedBox(
+          width: getProportionateScreenWidth(238),
+          child: AspectRatio(aspectRatio: 1,
+          child: Image.asset(product.images[0]),
+          ),
+        ),
+
+      ],
+    );
   }
 }

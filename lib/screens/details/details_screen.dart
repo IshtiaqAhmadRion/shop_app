@@ -10,13 +10,12 @@ class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final Object? args =
-        ModalRoute.of(context)!.settings.arguments;
+    final args = ModalRoute.of(context)!.settings.arguments as ProductDetailsArguments;
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
       appBar: preferredAppBar(),
       body: Body(
-        product: args!.product,
+        product: args.product,
       ),
     );
   }
