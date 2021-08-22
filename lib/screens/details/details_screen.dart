@@ -14,8 +14,11 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
       appBar: preferredAppBar(),
-      body: Body(
-        product: args.product,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Body(
+          product: args.product,
+        ),
       ),
     );
   }

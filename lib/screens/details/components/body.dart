@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants.dart';
+import 'package:shop_app/components/default_button.dart';
 
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/size_config.dart';
 
+import 'color_dots.dart';
 import 'product_description.dart';
 import 'product_images.dart';
 import 'top_rounded_container.dart';
@@ -14,81 +15,52 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ProductImages(product: product),
-        TopRoundedContainer(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ProductDescription(
-                product: product,
-                pressOnSeeMore: () {},
-              ),
-              TopRoundedContainer(
-                color: Color(0xFFF6F7F9),
-                child: ColorDots(product: product),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ColorDots extends StatelessWidget {
-  const ColorDots({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
-
-  final Product product;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: getProportionateScreenWidth(20),
-      ),
-      child: Row(
+    return SingleChildScrollView(
+      child: Column(
         children: [
-          ...List.generate(
-            product.colors.length,
-            (index) => ColorDot(color: product.colors[index]),
-          )
+          ProductImages(product: product),
+          TopRoundedContainer(
+            color: Colors.white,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  ProductDescription(
+                    product: product,
+                    pressOnSeeMore: () {},
+                  ),
+                  TopRoundedContainer(
+                    color: Color(0xFFF6F7F9),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          ColorDots(product: product),
+                          TopRoundedContainer(
+                            color: Colors.white,
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: Sizeconfig.screenHeight! * 0.15,
+                                    right: Sizeconfig.screenWidth! * 0.15,
+                                    top: getProportionateScreenWidth(15),
+                                    bottom: getProportionateScreenWidth(15),
+                                    ),
+                                child: CustomButton(
+                                  text: "Add to Cart",
+                                  voidCallback: () {},
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
-      ),
-    );
-  }
-}
-
-class ColorDot extends StatelessWidget {
-  const ColorDot({
-    Key? key,
-    required this.color,
-    this.isSelected = false,
-  }) : super(key: key);
-
-  final Color color;
-  final bool isSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 2),
-      padding: EdgeInsets.all(8),
-      height: getProportionateScreenWidth(40),
-      width: getProportionateScreenWidth(40),
-      decoration: BoxDecoration(
-          // color: product.colors[0],
-          shape: BoxShape.circle,
-          border: Border.all(color: isSelected ? kPrimaryColor : Colors.transparent)),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-        ),
       ),
     );
   }
