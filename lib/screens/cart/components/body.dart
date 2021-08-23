@@ -4,9 +4,14 @@ import 'package:shop_app/models/Cart.dart';
 import 'package:shop_app/size_config.dart';
 import 'cart_item_card.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,6 +22,7 @@ class Body extends StatelessWidget {
           padding:  EdgeInsets.symmetric(vertical: 10),
           child: Dismissible(
             key: Key(demoCarts[0].product.id.toString()),
+            direction: DismissDirection.endToStart,
             background: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
@@ -35,6 +41,4 @@ class Body extends StatelessWidget {
       ),
     );
   }
-
-
 }
