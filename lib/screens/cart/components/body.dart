@@ -15,13 +15,14 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: ListView.builder(
         itemCount: demoCarts.length,
         itemBuilder: (context, index) => Padding(
-          padding:  EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: 10),
           child: Dismissible(
-            key: Key(demoCarts[0].product.id.toString()),
+            key: Key(demoCarts[index].product.id.toString()),
             direction: DismissDirection.endToStart,
             background: Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -30,9 +31,17 @@ class _BodyState extends State<Body> {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Row(
-                children: [Spacer(), SvgPicture.asset("assets/icons/Trash.svg")],
+                children: [
+                  Spacer(),
+                  SvgPicture.asset("assets/icons/Trash.svg")
+                ],
               ),
             ),
+            onDismissed: (direction) {
+              setState(() {
+                demoCarts.removeAt(index);
+              });
+            },
             child: CartItemCard(
               cart: demoCarts[index],
             ),
